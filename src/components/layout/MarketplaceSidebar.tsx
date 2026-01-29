@@ -12,6 +12,8 @@ import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
 import { Search } from "lucide-react"
+import { useWorkspace } from "@/hooks/use-workspace"
+import type { PanelType } from "@/types/workspace"
 
 export interface MarketplaceItem {
   id: string
@@ -22,9 +24,7 @@ export interface MarketplaceItem {
 }
 
 interface MarketplaceSidebarProps {
-  type: "dataset" | "model" | "engine"
-  onItemSelect: (item: MarketplaceItem) => void
-  selectedItemId?: string
+  type: PanelType
 }
 
 const categories = ["All", "Popular", "Recent", "Featured", "Trending", "Official", "Community", "Verified"]
@@ -37,7 +37,7 @@ function generateMockItems(type: string, count: number): MarketplaceItem[] {
     model: ["GPT", "BERT", "LLaMA", "Mistral", "Claude", "Gemini", "Stable Diffusion", "YOLO", "ResNet", "ViT"],
     engine: ["TensorRT", "ONNX", "vLLM", "Triton", "Ray", "DeepSpeed", "Megatron", "JAX", "PyTorch", "TensorFlow"],
   }
-  
+
   const names = prefixes[type] || prefixes.dataset
   return Array.from({ length: count }, (_, i) => ({
     id: `${type}-${i}`,
@@ -54,7 +54,8 @@ const actionLabels: Record<string, string> = {
   engine: "Browse",
 }
 
-export function MarketplaceSidebar({ type, onItemSelect, selectedItemId }: MarketplaceSidebarProps) {
+export function MarketplaceSidebar({ type }: MarketplaceSidebarProps) {
+  const { openTab } = useWorkspace()
   const [search, setSearch] = useState("")
   const [categoryFilter, setCategoryFilter] = useState("All")
   const [licenseFilter, setLicenseFilter] = useState("All")
@@ -97,6 +98,10 @@ export function MarketplaceSidebar({ type, onItemSelect, selectedItemId }: Marke
     observer.observe(sentinel)
     return () => observer.disconnect()
   }, [hasMore, filteredItems.length])
+
+  const handleItemClick = (item: MarketplaceItem) => {
+    openTab(type, { id: item.id, name: item.name })
+  }
 
   return (
     <div className="h-full flex flex-col overflow-hidden">
@@ -166,10 +171,8 @@ export function MarketplaceSidebar({ type, onItemSelect, selectedItemId }: Marke
           {displayedItems.map((item) => (
             <div
               key={item.id}
-              className={`flex items-center justify-between p-2 rounded-md cursor-pointer hover:bg-muted/50 transition-colors ${
-                selectedItemId === item.id ? "bg-muted" : ""
-              }`}
-              onClick={() => onItemSelect(item)}
+              className="flex items-center justify-between p-2 rounded-md cursor-pointer hover:bg-muted/50 transition-colors"
+              onClick={() => handleItemClick(item)}
             >
               <span className="text-sm truncate flex-1 mr-2">{item.name}</span>
               <Button
@@ -178,6 +181,7 @@ export function MarketplaceSidebar({ type, onItemSelect, selectedItemId }: Marke
                 className="h-6 text-xs shrink-0"
                 onClick={(e) => {
                   e.stopPropagation()
+                  handleItemClick(item)
                 }}
               >
                 {actionLabels[type]}

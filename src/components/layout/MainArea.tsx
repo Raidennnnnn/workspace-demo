@@ -1,15 +1,12 @@
-interface MainAreaProps {
-  children?: React.ReactNode
-}
+import { TabBar, WorkspacePanel } from "@/components/workspace"
 
-export function MainArea({ children }: MainAreaProps) {
+export function MainArea() {
   return (
-    <div className="flex-1 h-full bg-background flex items-center justify-center">
-      {children || (
-        <div className="text-muted-foreground text-sm">
-          Main content area - split panels coming soon
-        </div>
-      )}
+    <div className="flex-1 h-full bg-background flex flex-col overflow-hidden">
+      <TabBar />
+      <div className="flex-1 min-h-0">
+        <WorkspacePanel />
+      </div>
     </div>
   )
 }

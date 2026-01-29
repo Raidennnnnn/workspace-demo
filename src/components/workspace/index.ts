@@ -1,0 +1,7 @@
+export { Tab } from "./Tab"
+export { TabBar } from "./TabBar"
+export { CollapsedPanelIndicator } from "./CollapsedPanelIndicator"
+export { CollapsedPanelStrip } from "./CollapsedPanelStrip"
+export { PanelContainer } from "./PanelContainer"
+export { PanelContent } from "./PanelContent"
+export { WorkspacePanel } from "./WorkspacePanel"
