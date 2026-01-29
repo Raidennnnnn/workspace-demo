@@ -13,9 +13,11 @@
 - [x] **Bottom Panel** - Terminal only, closeable, resizable
 
 ### Theme System
-- [x] Dark/light mode support via ThemeProvider
-- [x] Theme toggle button in activity bar
-- [x] Persists to localStorage
+- [x] Dark/light/system mode support via ThemeProvider
+- [x] 6 color themes: Default, Purple, Green, Blue, Yellow, Pink
+- [x] Each color theme has light and dark variants
+- [x] Theme switcher dropdown (palette icon) in activity bar
+- [x] Persists mode and color theme to localStorage
 
 ### Dependencies Added
 - shadcn/ui components: button, dropdown-menu, resizable

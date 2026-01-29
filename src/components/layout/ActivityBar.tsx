@@ -73,9 +73,8 @@ export function ActivityBar({ activeView, onViewChange }: ActivityBarProps) {
           return (
             <Button
               key={item.id}
-              variant="ghost"
+              variant={isActive ? "default" : "ghost"}
               size="icon"
-              className={isActive ? "bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground" : ""}
               onClick={() => handleTopClick(item.id)}
               title={item.label}
             >
