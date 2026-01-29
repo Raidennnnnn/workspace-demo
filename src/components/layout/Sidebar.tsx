@@ -1,5 +1,6 @@
 import type { ActivityView } from "./ActivityBar"
 import { MarketplaceSidebar, type MarketplaceItem } from "./MarketplaceSidebar"
+import { MySidebar } from "./MySidebar"
 import { Separator } from "@/components/ui/separator"
 
 interface SidebarProps {
@@ -10,6 +11,10 @@ interface SidebarProps {
 
 export function Sidebar({ activeView, onItemSelect, selectedItemId }: SidebarProps) {
   if (!activeView) return null
+
+  if (activeView === "my") {
+    return <MySidebar />
+  }
 
   const marketplaceViews = ["dataset", "model", "engine"] as const
   
