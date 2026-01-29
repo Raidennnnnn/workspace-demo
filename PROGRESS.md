@@ -25,6 +25,17 @@
 - class-variance-authority, radix-ui, clsx, tailwind-merge
 - react-resizable-panels
 
+### Sidebar Content
+- [x] My view content (5 cards: Dataset, Engine, Model, Resource, Task)
+- [x] Dataset view content (MarketplaceSidebar)
+- [x] Model view content (MarketplaceSidebar)
+- [x] Engine view content (MarketplaceSidebar)
+- [x] Message view content
+- [x] UserInfo view content
+
+### Bottom Panel
+- [x] Terminal panel with resizable height
+
 ## In Progress
 
 ### Main Area Split Panels
@@ -34,16 +45,3 @@
 - [ ] Only last two panels shown fully (1/4 + 3/4)
 - [ ] Ancestor panels collapse to rectangles
 - [ ] Click collapsed rectangle to expand/swap
-
-## Backlog
-
-### Sidebar Content
-- [ ] My view content
-- [ ] Dataset view content
-- [ ] Model view content
-- [ ] Engine view content
-- [ ] Message view content
-- [ ] UserInfo view content
-
-### Bottom Panel
-- [ ] Actual terminal functionality
