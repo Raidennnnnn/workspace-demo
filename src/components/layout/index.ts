@@ -1,0 +1,5 @@
+export { AppLayout } from "./AppLayout"
+export { ActivityBar, type ActivityView } from "./ActivityBar"
+export { Sidebar } from "./Sidebar"
+export { MainArea } from "./MainArea"
+export { BottomPanel } from "./BottomPanel"
