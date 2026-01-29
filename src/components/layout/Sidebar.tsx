@@ -1,5 +1,6 @@
 import type { ActivityView } from "./ActivityBar"
 import { MarketplaceSidebar, type MarketplaceItem } from "./MarketplaceSidebar"
+import { Separator } from "@/components/ui/separator"
 
 interface SidebarProps {
   activeView: ActivityView
@@ -36,11 +37,12 @@ export function Sidebar({ activeView, onItemSelect, selectedItemId }: SidebarPro
 
   return (
     <div className="h-full bg-muted/30 border-r">
-      <div className="p-3 border-b">
+      <div className="p-3">
         <h2 className="text-sm font-medium uppercase tracking-wide">
           {titles[activeView]}
         </h2>
       </div>
+      <Separator />
       <div className="p-3 text-sm text-muted-foreground">
         {activeView} content goes here
       </div>

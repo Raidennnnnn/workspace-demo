@@ -9,6 +9,8 @@ import {
 } from "@/components/ui/select"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Button } from "@/components/ui/button"
+import { Label } from "@/components/ui/label"
+import { Separator } from "@/components/ui/separator"
 import { Search } from "lucide-react"
 
 export interface MarketplaceItem {
@@ -98,7 +100,7 @@ export function MarketplaceSidebar({ type, onItemSelect, selectedItemId }: Marke
 
   return (
     <div className="h-full flex flex-col overflow-hidden">
-      <div className="shrink-0 p-3 border-b space-y-2">
+      <div className="shrink-0 p-3 space-y-2">
         <h2 className="text-sm font-medium uppercase tracking-wide">
           {type.charAt(0).toUpperCase() + type.slice(1)} Market
         </h2>
@@ -112,7 +114,7 @@ export function MarketplaceSidebar({ type, onItemSelect, selectedItemId }: Marke
           />
         </div>
         <div className="space-y-1">
-          <label className="text-xs text-muted-foreground">Category</label>
+          <Label className="text-xs text-muted-foreground">Category</Label>
           <Select value={categoryFilter} onValueChange={setCategoryFilter}>
             <SelectTrigger className="h-8 w-full">
               <SelectValue placeholder="Category" />
@@ -127,7 +129,7 @@ export function MarketplaceSidebar({ type, onItemSelect, selectedItemId }: Marke
           </Select>
         </div>
         <div className="space-y-1">
-          <label className="text-xs text-muted-foreground">License</label>
+          <Label className="text-xs text-muted-foreground">License</Label>
           <Select value={licenseFilter} onValueChange={setLicenseFilter}>
             <SelectTrigger className="h-8 w-full">
               <SelectValue placeholder="License" />
@@ -142,7 +144,7 @@ export function MarketplaceSidebar({ type, onItemSelect, selectedItemId }: Marke
           </Select>
         </div>
         <div className="space-y-1">
-          <label className="text-xs text-muted-foreground">Size</label>
+          <Label className="text-xs text-muted-foreground">Size</Label>
           <Select value={sizeFilter} onValueChange={setSizeFilter}>
             <SelectTrigger className="h-8 w-full">
               <SelectValue placeholder="Size" />
@@ -157,6 +159,7 @@ export function MarketplaceSidebar({ type, onItemSelect, selectedItemId }: Marke
           </Select>
         </div>
       </div>
+      <Separator />
 
       <ScrollArea className="flex-1 min-h-0">
         <div className="p-2 space-y-1">
