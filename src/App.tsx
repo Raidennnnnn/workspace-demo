@@ -3,7 +3,7 @@ import { AppLayout } from "@/components/layout"
 
 export function App() {
   return (
-    <ThemeProvider defaultTheme="dark" storageKey="workspace-demo-theme">
+    <ThemeProvider defaultMode="dark" storageKey="workspace-demo-theme">
       <AppLayout />
     </ThemeProvider>
   )

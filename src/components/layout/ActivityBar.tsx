@@ -8,8 +8,36 @@ import {
   UserCircle,
   Sun,
   Moon,
+  Monitor,
+  Palette,
+  Check,
 } from "lucide-react"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 import { useTheme } from "@/hooks/use-theme"
+import type { ColorTheme, Mode } from "@/components/theme-provider"
+import { cn } from "@/lib/utils"
+
+const colorThemes: { value: ColorTheme; label: string; color: string }[] = [
+  { value: "default", label: "Default", color: "bg-neutral-500" },
+  { value: "purple", label: "Purple", color: "bg-[oklch(0.33_0.16_288)]" },
+  { value: "green", label: "Green", color: "bg-[oklch(0.66_0.13_166)]" },
+  { value: "blue", label: "Blue", color: "bg-[oklch(0.37_0.23_264)]" },
+  { value: "yellow", label: "Yellow", color: "bg-[oklch(0.81_0.16_85)]" },
+  { value: "pink", label: "Pink", color: "bg-[oklch(0.59_0.23_357)]" },
+]
+
+const modes: { value: Mode; label: string; icon: typeof Sun }[] = [
+  { value: "light", label: "Light", icon: Sun },
+  { value: "dark", label: "Dark", icon: Moon },
+  { value: "system", label: "System", icon: Monitor },
+]
 
 export type ActivityView = "my" | "dataset" | "model" | "engine" | "message" | "userinfo" | null
 
@@ -31,14 +59,10 @@ const bottomItems = [
 ]
 
 export function ActivityBar({ activeView, onViewChange }: ActivityBarProps) {
-  const { theme, setTheme } = useTheme()
+  const { mode, colorTheme, setMode, setColorTheme } = useTheme()
 
   const handleTopClick = (id: ActivityView) => {
     onViewChange(activeView === id ? null : id)
-  }
-
-  const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark")
   }
 
   return (
@@ -73,15 +97,44 @@ export function ActivityBar({ activeView, onViewChange }: ActivityBarProps) {
             <item.icon className="h-5 w-5" />
           </Button>
         ))}
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={toggleTheme}
-          title="Toggle theme"
-        >
-          <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-        </Button>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" size="icon" title="Theme">
+              <Palette className="h-5 w-5" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="start" side="right" className="w-48">
+            <DropdownMenuLabel>Mode</DropdownMenuLabel>
+            {modes.map(({ value, label, icon: Icon }) => (
+              <DropdownMenuItem
+                key={value}
+                onClick={() => setMode(value)}
+                className="flex items-center justify-between"
+              >
+                <span className="flex items-center gap-2">
+                  <Icon className="h-4 w-4" />
+                  {label}
+                </span>
+                {mode === value && <Check className="h-4 w-4" />}
+              </DropdownMenuItem>
+            ))}
+            <DropdownMenuSeparator />
+            <DropdownMenuLabel>Color Theme</DropdownMenuLabel>
+            {colorThemes.map(({ value, label, color }) => (
+              <DropdownMenuItem
+                key={value}
+                onClick={() => setColorTheme(value)}
+                className="flex items-center justify-between"
+              >
+                <span className="flex items-center gap-2">
+                  <span className={cn("h-4 w-4 rounded-full", color)} />
+                  {label}
+                </span>
+                {colorTheme === value && <Check className="h-4 w-4" />}
+              </DropdownMenuItem>
+            ))}
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
     </div>
   )
