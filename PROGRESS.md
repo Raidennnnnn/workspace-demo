@@ -1,0 +1,47 @@
+# Implementation Progress
+
+## Completed
+
+### Layout Structure
+- [x] **Activity Bar** - Left edge with vertical icon buttons
+  - 4 top items: My, Dataset, Model, Engine
+  - 2 bottom items: Message, UserInfo
+  - Theme toggle button at bottom
+  - Click toggles corresponding sidebar view
+- [x] **Sidebar** - Resizable, toggleable via activity bar icons
+- [x] **Main Area** - Placeholder ready for split panel implementation
+- [x] **Bottom Panel** - Terminal only, closeable, resizable
+
+### Theme System
+- [x] Dark/light mode support via ThemeProvider
+- [x] Theme toggle button in activity bar
+- [x] Persists to localStorage
+
+### Dependencies Added
+- shadcn/ui components: button, dropdown-menu, resizable
+- lucide-react icons
+- class-variance-authority, radix-ui, clsx, tailwind-merge
+- react-resizable-panels
+
+## In Progress
+
+### Main Area Split Panels
+- [ ] Parent-child panel hierarchy
+- [ ] One parent → one child relationship
+- [ ] Closing parent closes all descendants
+- [ ] Only last two panels shown fully (1/4 + 3/4)
+- [ ] Ancestor panels collapse to rectangles
+- [ ] Click collapsed rectangle to expand/swap
+
+## Backlog
+
+### Sidebar Content
+- [ ] My view content
+- [ ] Dataset view content
+- [ ] Model view content
+- [ ] Engine view content
+- [ ] Message view content
+- [ ] UserInfo view content
+
+### Bottom Panel
+- [ ] Actual terminal functionality

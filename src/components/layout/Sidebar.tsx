@@ -17,13 +17,13 @@ export function Sidebar({ activeView }: SidebarProps) {
   }
 
   return (
-    <div className="h-full bg-zinc-900 border-r border-zinc-800">
-      <div className="p-3 border-b border-zinc-800">
-        <h2 className="text-sm font-medium text-zinc-200 uppercase tracking-wide">
+    <div className="h-full bg-muted/30 border-r">
+      <div className="p-3 border-b">
+        <h2 className="text-sm font-medium uppercase tracking-wide">
           {titles[activeView]}
         </h2>
       </div>
-      <div className="p-3 text-sm text-zinc-400">
+      <div className="p-3 text-sm text-muted-foreground">
         {activeView} content goes here
       </div>
     </div>

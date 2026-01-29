@@ -1,5 +1,7 @@
 # AGENTS.md
 
+> **Progress tracking:** See [PROGRESS.md](./PROGRESS.md) for implementation status
+
 ## Commands
 - **Dev server:** `pnpm dev`
 - **Build:** `pnpm build` (runs tsc + vite build)

@@ -11,9 +11,10 @@ import { BottomPanel } from "./BottomPanel"
 
 export function AppLayout() {
   const [activeView, setActiveView] = useState<ActivityView>("my")
+  const [bottomPanelOpen, setBottomPanelOpen] = useState(true)
 
   return (
-    <div className="flex h-screen w-screen bg-zinc-950 text-white overflow-hidden">
+    <div className="flex h-screen w-screen bg-background text-foreground overflow-hidden">
       <ActivityBar activeView={activeView} onViewChange={setActiveView} />
       
       <ResizablePanelGroup orientation="horizontal" className="flex-1">
@@ -28,15 +29,21 @@ export function AppLayout() {
         
         <ResizablePanel defaultSize="80%">
           <ResizablePanelGroup orientation="vertical">
-            <ResizablePanel defaultSize={70}>
+            <ResizablePanel defaultSize={bottomPanelOpen ? "70%" : "100%"}>
               <MainArea />
             </ResizablePanel>
             
-            <ResizableHandle className="w-full"/>
-
-            <ResizablePanel defaultSize={30}>
-              <BottomPanel/>
-            </ResizablePanel>
+            {bottomPanelOpen && (
+              <>
+                <ResizableHandle />
+                <ResizablePanel defaultSize="30%" minSize="10%" maxSize="50%">
+                  <BottomPanel
+                    isOpen={bottomPanelOpen}
+                    onClose={() => setBottomPanelOpen(false)}
+                  />
+                </ResizablePanel>
+              </>
+            )}
           </ResizablePanelGroup>
         </ResizablePanel>
       </ResizablePanelGroup>

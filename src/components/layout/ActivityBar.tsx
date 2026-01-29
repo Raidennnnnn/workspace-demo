@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 import {
   User,
   Database,
@@ -6,7 +6,10 @@ import {
   Cog,
   MessageSquare,
   UserCircle,
+  Sun,
+  Moon,
 } from "lucide-react"
+import { useTheme } from "@/hooks/use-theme"
 
 export type ActivityView = "my" | "dataset" | "model" | "engine" | "message" | "userinfo" | null
 
@@ -28,46 +31,53 @@ const bottomItems = [
 ]
 
 export function ActivityBar({ activeView, onViewChange }: ActivityBarProps) {
+  const { theme, setTheme } = useTheme()
+
   const handleClick = (id: ActivityView) => {
     onViewChange(activeView === id ? null : id)
   }
 
+  const toggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark")
+  }
+
   return (
-    <div className="flex flex-col h-full w-12 bg-zinc-900 border-r border-zinc-800">
+    <div className="flex flex-col h-full w-12 bg-muted/50 border-r">
       <div className="flex flex-col items-center gap-1 pt-2">
         {topItems.map((item) => (
-          <button
+          <Button
             key={item.id}
+            variant={activeView === item.id ? "secondary" : "ghost"}
+            size="icon"
             onClick={() => handleClick(item.id)}
-            className={cn(
-              "flex items-center justify-center w-10 h-10 rounded-md transition-colors",
-              activeView === item.id
-                ? "bg-zinc-700 text-white"
-                : "text-zinc-400 hover:text-white hover:bg-zinc-800"
-            )}
             title={item.label}
           >
-            <item.icon className="w-5 h-5" />
-          </button>
+            <item.icon className="h-5 w-5" />
+          </Button>
         ))}
       </div>
       <div className="flex-1" />
       <div className="flex flex-col items-center gap-1 pb-2">
         {bottomItems.map((item) => (
-          <button
+          <Button
             key={item.id}
+            variant={activeView === item.id ? "secondary" : "ghost"}
+            size="icon"
             onClick={() => handleClick(item.id)}
-            className={cn(
-              "flex items-center justify-center w-10 h-10 rounded-md transition-colors",
-              activeView === item.id
-                ? "bg-zinc-700 text-white"
-                : "text-zinc-400 hover:text-white hover:bg-zinc-800"
-            )}
             title={item.label}
           >
-            <item.icon className="w-5 h-5" />
-          </button>
+            <item.icon className="h-5 w-5" />
+          </Button>
         ))}
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={toggleTheme}
+          title="Toggle theme"
+        >
+          <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+          <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+        </Button>
       </div>
     </div>
   )
