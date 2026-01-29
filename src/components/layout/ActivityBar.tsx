@@ -33,7 +33,7 @@ const bottomItems = [
 export function ActivityBar({ activeView, onViewChange }: ActivityBarProps) {
   const { theme, setTheme } = useTheme()
 
-  const handleClick = (id: ActivityView) => {
+  const handleTopClick = (id: ActivityView) => {
     onViewChange(activeView === id ? null : id)
   }
 
@@ -44,26 +44,30 @@ export function ActivityBar({ activeView, onViewChange }: ActivityBarProps) {
   return (
     <div className="flex flex-col h-full w-12 bg-muted/50 border-r">
       <div className="flex flex-col items-center gap-1 pt-2">
-        {topItems.map((item) => (
-          <Button
-            key={item.id}
-            variant={activeView === item.id ? "secondary" : "ghost"}
-            size="icon"
-            onClick={() => handleClick(item.id)}
-            title={item.label}
-          >
-            <item.icon className="h-5 w-5" />
-          </Button>
-        ))}
+        {topItems.map((item) => {
+          const isActive = activeView === item.id
+          return (
+            <Button
+              key={item.id}
+              variant="ghost"
+              size="icon"
+              className={isActive ? "bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground" : ""}
+              onClick={() => handleTopClick(item.id)}
+              title={item.label}
+            >
+              <item.icon className="h-5 w-5" />
+            </Button>
+          )
+        })}
       </div>
       <div className="flex-1" />
       <div className="flex flex-col items-center gap-1 pb-2">
         {bottomItems.map((item) => (
           <Button
             key={item.id}
-            variant={activeView === item.id ? "secondary" : "ghost"}
+            variant="ghost"
             size="icon"
-            onClick={() => handleClick(item.id)}
+            onClick={() => {}}
             title={item.label}
           >
             <item.icon className="h-5 w-5" />
