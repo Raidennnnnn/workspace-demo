@@ -48,7 +48,7 @@ export function PanelContent({ panel, index }: PanelContentProps) {
 
       {canCreateChild && (
         <>
-        <p className=" flex flex-col gap-2 text-sm mt-4">
+        <p className=" flex flex-col gap-2 text-sm mt-4 text-primary">
           <span className="font-bold">Advantage:</span>
           <span>1. all the detail or setting will render in the panel, not a dialog/drawer, this feels more stable and user friendly</span>
           <span>2. this approach will mostly avoid dialog on top of dialog/ drawer on top of drawer, which is very annoying</span>

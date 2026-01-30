@@ -14,7 +14,7 @@ export function WorkspacePanel() {
     return (
       <div className="h-full flex flex-col items-center justify-center text-muted-foreground">
         Select an item from the sidebar to get started
-        <p className="flex flex-col gap-2 mt-4">
+        <p className="flex flex-col gap-2 mt-4 text-primary">
           <span className="font-bold">Advantage:</span>
           <span>1. this layout is mostly copying VS Code, solid and stable</span>
           <span>2. vscode is a most popular code editor, this layout is a good reference</span>

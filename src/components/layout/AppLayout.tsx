@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import {
   ResizablePanelGroup,
   ResizablePanel,
@@ -9,10 +9,20 @@ import { Sidebar } from "./Sidebar"
 import { MainArea } from "./MainArea"
 import { BottomPanel } from "./BottomPanel"
 import { WorkspaceProvider } from "@/contexts/WorkspaceContextProvider"
+import { toast } from "sonner"
 
 export function AppLayout() {
   const [activeView, setActiveView] = useState<ActivityView>("my")
   const [isBottomCollapsed, setIsBottomCollapsed] = useState(false)
+
+  useEffect(() => {
+    const isStandalone = window.matchMedia("(display-mode: standalone)").matches
+    if (!isStandalone) {
+      toast.info("Install this app on your desktop for the best experience", {
+        duration: 5000,
+      })
+    }
+  }, [])
 
   const handleViewChange = (view: ActivityView) => {
     setActiveView(view)

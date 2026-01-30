@@ -28,10 +28,11 @@ export function BottomPanel({ isCollapsed, onToggle }: BottomPanelProps) {
         <>
           <Separator />
           <div className="flex-1 p-3 font-mono text-sm">
-            <div className="flex flex-col items-center gap-2">
-              <span className="text-primary"> ai chat area, this is command mode</span>
-              <span> can be switch to chat mode (not implement in this demo)</span>
-              <span> maximum viewport by clicking the arrow on the top-right in the bottom panel</span>
+            <div className="flex flex-col items-center gap-2 text-primary">
+              <span className="font-bold">Advantage:</span>
+              <span>1. AI chat area, this is command mode</span>
+              <span>2. can be switch to chat mode (not implement in this demo)</span>
+              <span>3. maximum viewport by clicking the arrow on the top-right in the bottom panel</span>
             </div>
           </div>
         </>
