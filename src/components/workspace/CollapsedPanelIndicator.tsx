@@ -1,4 +1,4 @@
-import { Database, Box, Cog } from "lucide-react"
+import { Database, Box, Cog, Settings } from "lucide-react"
 import { cn } from "@/lib/utils"
 import type { Panel } from "@/types/workspace"
 
@@ -11,6 +11,7 @@ const typeIcons = {
   dataset: Database,
   model: Box,
   engine: Cog,
+  settings: Settings,
 }
 
 export function CollapsedPanelIndicator({ panel, onClick }: CollapsedPanelIndicatorProps) {

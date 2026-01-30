@@ -1,4 +1,4 @@
-import type { WorkspaceState, PanelType, Panel, Tab, TabId, PanelId } from "@/types/workspace"
+import type { WorkspaceState, PanelType, PanelSource, Panel, Tab, TabId, PanelId } from "@/types/workspace"
 import { useState, useCallback, useMemo } from "react"
 import type { MarketplaceItem, WorkspaceContextValue } from "./WorkspaceContext"
 import { WorkspaceContext } from "./WorkspaceContext"
@@ -13,7 +13,7 @@ export function WorkspaceProvider({ children }: { children: React.ReactNode }) {
     activeTabId: null,
   })
 
-  const openTab = useCallback((type: PanelType, item: MarketplaceItem) => {
+  const openTab = useCallback((type: PanelType, item: MarketplaceItem, source: PanelSource = "marketplace") => {
     setState((prev) => {
       const existingTab = prev.tabs.find(
         (t) => t.type === type && t.panels[0]?.itemId === item.id
@@ -30,6 +30,7 @@ export function WorkspaceProvider({ children }: { children: React.ReactNode }) {
         itemId: item.id,
         itemName: item.name,
         parentId: null,
+        source,
       }
       const newTab: Tab = {
         id: tabId,
@@ -106,6 +107,7 @@ export function WorkspaceProvider({ children }: { children: React.ReactNode }) {
         itemId: item.id,
         itemName: item.name,
         parentId: parentPanel.id,
+        source: parentPanel.source,
       }
 
       const parentIndex = activeTab.panels.findIndex(

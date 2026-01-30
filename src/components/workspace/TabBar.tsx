@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react"
-import { X, Database, Box, Cog } from "lucide-react"
+import { X, Database, Box, Cog, Settings } from "lucide-react"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import { useWorkspace } from "@/hooks/use-workspace"
@@ -11,6 +11,7 @@ const typeIcons: Record<PanelType, typeof Database> = {
   dataset: Database,
   model: Box,
   engine: Cog,
+  settings: Settings,
 }
 
 export function TabBar() {

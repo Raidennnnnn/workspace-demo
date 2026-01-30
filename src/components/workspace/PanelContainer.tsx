@@ -1,25 +1,28 @@
-import { X, Database, Box, Cog } from "lucide-react"
+import { X, Database, Box, Cog, Settings } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { PanelContent } from "./PanelContent"
 import { useWorkspace } from "@/hooks/use-workspace"
+import { cn } from "@/lib/utils"
 import type { Panel } from "@/types/workspace"
 
 interface PanelContainerProps {
   panel: Panel
+  className?: string
 }
 
 const typeIcons = {
   dataset: Database,
   model: Box,
   engine: Cog,
+  settings: Settings,
 }
 
-export function PanelContainer({ panel }: PanelContainerProps) {
+export function PanelContainer({ panel, className }: PanelContainerProps) {
   const { closePanel } = useWorkspace()
   const Icon = typeIcons[panel.type]
 
   return (
-    <div className="h-full flex flex-col bg-background">
+    <div className={cn("h-full flex flex-col bg-background border", className)}>
       <div className="flex items-center justify-between px-3 py-2 border-b bg-muted/30 shrink-0">
         <div className="flex items-center gap-2">
           <Icon className="h-4 w-4 text-muted-foreground" />

@@ -1,5 +1,5 @@
 import { createContext } from "react"
-import type { Panel, PanelId, PanelType, Tab, TabId, WorkspaceState } from "@/types/workspace"
+import type { Panel, PanelId, PanelSource, PanelType, Tab, TabId, WorkspaceState } from "@/types/workspace"
 
 export interface MarketplaceItem {
   id: string
@@ -8,7 +8,7 @@ export interface MarketplaceItem {
 
 export interface WorkspaceContextValue {
   state: WorkspaceState
-  openTab: (type: PanelType, item: MarketplaceItem) => void
+  openTab: (type: PanelType, item: MarketplaceItem, source?: PanelSource) => void
   closeTab: (tabId: TabId) => void
   switchTab: (tabId: TabId) => void
   openChildPanel: (type: PanelType, item: MarketplaceItem) => void

@@ -23,7 +23,7 @@ export function WorkspacePanel() {
   if (!parent) {
     return (
       <div className="h-full flex">
-        <PanelContainer panel={child} />
+        <PanelContainer panel={child} className="flex-1" />
       </div>
     )
   }
@@ -32,7 +32,7 @@ export function WorkspacePanel() {
     <div className="h-full flex">
       <CollapsedPanelStrip />
       <ResizablePanelGroup orientation="horizontal" className="flex-1">
-        <ResizablePanel defaultSize={25} minSize={15} maxSize={50}>
+        <ResizablePanel defaultSize={25}>
           <PanelContainer panel={parent} />
         </ResizablePanel>
         <ResizableHandle withHandle />

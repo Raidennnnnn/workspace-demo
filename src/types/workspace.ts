@@ -1,4 +1,5 @@
-export type PanelType = "dataset" | "model" | "engine"
+export type PanelType = "dataset" | "model" | "engine" | "settings"
+export type PanelSource = "my" | "marketplace"
 export type PanelId = string
 export type TabId = string
 
@@ -8,6 +9,7 @@ export interface Panel {
   itemId: string
   itemName: string
   parentId: PanelId | null
+  source: PanelSource
 }
 
 export interface Tab {

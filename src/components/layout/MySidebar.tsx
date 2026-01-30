@@ -1,16 +1,22 @@
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
-import { Database, Cog, Box, Server, ListTodo } from "lucide-react"
+import { Database, Cog, Box } from "lucide-react"
+import { useWorkspace } from "@/hooks/use-workspace"
+import type { PanelType } from "@/types/workspace"
 
 const myItems = [
-  { id: "dataset", icon: Database, title: "Dataset", description: "Manage your datasets" },
-  { id: "engine", icon: Cog, title: "Engine", description: "Configure engines" },
-  { id: "model", icon: Box, title: "Model", description: "Your trained models" },
-  { id: "resource", icon: Server, title: "Resource", description: "System resources" },
-  { id: "task", icon: ListTodo, title: "Task", description: "Running tasks" },
+  { id: "dataset", type: "dataset" as PanelType, icon: Database, title: "Dataset", description: "Manage your datasets" },
+  { id: "engine", type: "engine" as PanelType, icon: Cog, title: "Engine", description: "Configure engines" },
+  { id: "model", type: "model" as PanelType, icon: Box, title: "Model", description: "Your trained models" },
 ]
 
 export function MySidebar() {
+  const { openTab } = useWorkspace()
+
+  const handleItemClick = (item: typeof myItems[0]) => {
+    openTab(item.type, { id: `my-${item.id}`, name: `My ${item.title}` }, "my")
+  }
+
   return (
     <div className="h-full bg-muted/30 border-r">
       <div className="p-3">
@@ -20,9 +26,9 @@ export function MySidebar() {
       <div className="p-3 space-y-2">
         {myItems.map((item) => (
           <Card
-            
             key={item.id}
             className="cursor-pointer transition-colors hover:bg-accent py-2"
+            onClick={() => handleItemClick(item)}
           >
             <CardHeader className="p-3">
               <div className="flex items-center gap-3">
