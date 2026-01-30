@@ -42,6 +42,13 @@ export function MySidebar() {
           </Card>
         ))}
       </div>
+      <Separator />
+      <div className="p-3 text-sm">
+        <p className=" flex flex-col gap-2">
+          <span className="font-bold">Advantage:</span>
+          <span> 1. user can toggle it by clicking the icon in the activity bar, similar to VS Code, give user maximum viewport</span>
+        </p>
+      </div>
     </div>
   )
 }

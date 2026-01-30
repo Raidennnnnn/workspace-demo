@@ -12,9 +12,14 @@ import { WorkspaceProvider } from "@/contexts/WorkspaceContextProvider"
 
 export function AppLayout() {
   const [activeView, setActiveView] = useState<ActivityView>("my")
+  const [isBottomCollapsed, setIsBottomCollapsed] = useState(false)
 
   const handleViewChange = (view: ActivityView) => {
     setActiveView(view)
+  }
+
+  const handleBottomToggle = () => {
+    setIsBottomCollapsed(!isBottomCollapsed)
   }
 
   return (
@@ -33,17 +38,26 @@ export function AppLayout() {
           )}
 
           <ResizablePanel defaultSize={80}>
-            <ResizablePanelGroup orientation="vertical">
-              <ResizablePanel defaultSize={70}>
-                <MainArea />
-              </ResizablePanel>
-
-              <ResizableHandle className="w-full"/>
-
-              <ResizablePanel defaultSize={30}>
-                <BottomPanel />
-              </ResizablePanel>
-            </ResizablePanelGroup>
+            <div className="h-full flex flex-col">
+              {isBottomCollapsed ? (
+                <>
+                  <div className="flex-1">
+                    <MainArea />
+                  </div>
+                  <BottomPanel isCollapsed={isBottomCollapsed} onToggle={handleBottomToggle} />
+                </>
+              ) : (
+                <ResizablePanelGroup orientation="vertical" className="flex-1">
+                  <ResizablePanel defaultSize={70}>
+                    <MainArea />
+                  </ResizablePanel>
+                  <ResizableHandle className="w-full"/>
+                  <ResizablePanel defaultSize={30}>
+                    <BottomPanel isCollapsed={isBottomCollapsed} onToggle={handleBottomToggle} />
+                  </ResizablePanel>
+                </ResizablePanelGroup>
+              )}
+            </div>
           </ResizablePanel>
         </ResizablePanelGroup>
       </div>

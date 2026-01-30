@@ -12,8 +12,14 @@ export function WorkspacePanel() {
 
   if (!activeTab || !visiblePanels.child) {
     return (
-      <div className="h-full flex items-center justify-center text-muted-foreground">
+      <div className="h-full flex flex-col items-center justify-center text-muted-foreground">
         Select an item from the sidebar to get started
+        <p className="flex flex-col gap-2 mt-4">
+          <span className="font-bold">Advantage:</span>
+          <span>1. this layout is mostly copying VS Code, solid and stable</span>
+          <span>2. vscode is a most popular code editor, this layout is a good reference</span>
+          <span>3. user will feel like in a real workspace, not like a web app</span>
+        </p>
       </div>
     )
   }
