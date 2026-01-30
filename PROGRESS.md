@@ -36,6 +36,12 @@
 ### Bottom Panel
 - [x] Terminal panel with resizable height
 
+### Workspace Tabs
+- [x] Tab bar with horizontal scrolling
+- [x] New tabs inserted after active tab (not at end)
+- [x] Auto-scroll to active tab when `activeTabId` changes
+  - Handles both new tab creation and existing tab selection from sidebar
+
 ## In Progress
 
 ### Main Area Split Panels
@@ -45,3 +51,8 @@
 - [ ] Only last two panels shown fully (1/4 + 3/4)
 - [ ] Ancestor panels collapse to rectangles
 - [ ] Click collapsed rectangle to expand/swap
+
+## Known Issues
+
+### WorkspacePanel
+- [ ] Has rendering/behavior problems (needs investigation)
