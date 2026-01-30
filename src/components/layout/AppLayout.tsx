@@ -19,7 +19,7 @@ export function AppLayout() {
     const isStandalone = window.matchMedia("(display-mode: standalone)").matches
     if (!isStandalone) {      
       setTimeout(() => {
-        toast.info("Install this app on your desktop for the best experience", {
+        toast.info("安装到桌面，获得最佳体验", {
           duration: 10000,
         })
       })
