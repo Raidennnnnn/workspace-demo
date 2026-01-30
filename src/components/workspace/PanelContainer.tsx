@@ -1,4 +1,4 @@
-import { X, Database, Box, Cog, Settings } from "lucide-react"
+import { X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { PanelContent } from "./PanelContent"
 import { useWorkspace } from "@/hooks/use-workspace"
@@ -7,25 +7,20 @@ import type { Panel } from "@/types/workspace"
 
 interface PanelContainerProps {
   panel: Panel
+  index: number
   className?: string
 }
 
-const typeIcons = {
-  dataset: Database,
-  model: Box,
-  engine: Cog,
-  settings: Settings,
-}
-
-export function PanelContainer({ panel, className }: PanelContainerProps) {
+export function PanelContainer({ panel, index, className }: PanelContainerProps) {
   const { closePanel } = useWorkspace()
-  const Icon = typeIcons[panel.type]
 
   return (
     <div className={cn("h-full flex flex-col bg-background border", className)}>
       <div className="flex items-center justify-between px-3 py-2 border-b bg-muted/30 shrink-0">
         <div className="flex items-center gap-2">
-          <Icon className="h-4 w-4 text-muted-foreground" />
+          <span className="w-5 h-5 flex items-center justify-center rounded bg-muted text-xs font-medium text-muted-foreground">
+            {index}
+          </span>
           <span className="text-sm font-medium truncate">{panel.itemName}</span>
         </div>
         <Button
@@ -38,7 +33,7 @@ export function PanelContainer({ panel, className }: PanelContainerProps) {
         </Button>
       </div>
       <div className="flex-1 overflow-auto">
-        <PanelContent panel={panel} />
+        <PanelContent panel={panel} index={index} />
       </div>
     </div>
   )

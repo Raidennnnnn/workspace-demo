@@ -10,10 +10,11 @@ export function CollapsedPanelStrip() {
 
   return (
     <div className="flex flex-col gap-1 p-1 bg-muted/20 border-r shrink-0">
-      {collapsedPanels.map((panel) => (
+      {collapsedPanels.map((panel, idx) => (
         <CollapsedPanelIndicator
           key={panel.id}
           panel={panel}
+          index={idx + 1}
           onClick={() => expandPanel(panel.id)}
         />
       ))}

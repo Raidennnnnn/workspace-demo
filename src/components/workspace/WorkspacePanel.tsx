@@ -19,11 +19,13 @@ export function WorkspacePanel() {
   }
 
   const { parent, child } = visiblePanels
+  const childIndex = activeTab.panels.findIndex((p) => p.id === child.id) + 1
+  const parentIndex = parent ? activeTab.panels.findIndex((p) => p.id === parent.id) + 1 : 0
 
   if (!parent) {
     return (
       <div className="h-full flex">
-        <PanelContainer panel={child} className="flex-1" />
+        <PanelContainer panel={child} index={childIndex} className="flex-1" />
       </div>
     )
   }
@@ -33,11 +35,11 @@ export function WorkspacePanel() {
       <CollapsedPanelStrip />
       <ResizablePanelGroup orientation="horizontal" className="flex-1">
         <ResizablePanel defaultSize={25}>
-          <PanelContainer panel={parent} />
+          <PanelContainer panel={parent} index={parentIndex} />
         </ResizablePanel>
         <ResizableHandle withHandle />
         <ResizablePanel defaultSize={75}>
-          <PanelContainer panel={child} />
+          <PanelContainer panel={child} index={childIndex} />
         </ResizablePanel>
       </ResizablePanelGroup>
     </div>

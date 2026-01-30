@@ -1,17 +1,11 @@
 import { Button } from "@/components/ui/button"
-import { Database, Box, Cog, Settings } from "lucide-react"
+import { Settings } from "lucide-react"
 import { useWorkspace } from "@/hooks/use-workspace"
 import type { Panel } from "@/types/workspace"
 
 interface PanelContentProps {
   panel: Panel
-}
-
-const typeIcons = {
-  dataset: Database,
-  model: Box,
-  engine: Cog,
-  settings: Settings,
+  index: number
 }
 
 const typeLabels = {
@@ -21,9 +15,8 @@ const typeLabels = {
   settings: "Settings",
 }
 
-export function PanelContent({ panel }: PanelContentProps) {
+export function PanelContent({ panel, index }: PanelContentProps) {
   const { openChildPanel, activeTab } = useWorkspace()
-  const Icon = typeIcons[panel.type]
 
   const panelCount = activeTab?.panels.length ?? 0
   const isSettingsPanel = panel.type === "settings"
@@ -41,7 +34,9 @@ export function PanelContent({ panel }: PanelContentProps) {
   return (
     <div className="h-full flex flex-col items-center justify-center gap-4 p-4">
       <div className="flex items-center gap-2 text-muted-foreground">
-        <Icon className="h-8 w-8" />
+        <span className="w-10 h-10 flex items-center justify-center rounded-lg bg-muted text-xl font-semibold">
+          {index}
+        </span>
         {!isSettingsPanel && (
           <span className="text-lg font-medium">{typeLabels[panel.type]}</span>
         )}
