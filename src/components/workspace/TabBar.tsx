@@ -1,62 +1,67 @@
-import { useRef } from "react"
-import { ChevronLeft, ChevronRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Tab } from "./Tab"
+import { X, Database, Box, Cog } from "lucide-react"
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import { useWorkspace } from "@/hooks/use-workspace"
+import { useHorizontalScroll } from "@/hooks/use-horizontal-scroll"
+import type { PanelType, TabId, WorkspaceState } from "@/types/workspace"
+import { Button } from "../ui/button"
+
+const typeIcons: Record<PanelType, typeof Database> = {
+  dataset: Database,
+  model: Box,
+  engine: Cog,
+}
 
 export function TabBar() {
   const { state, switchTab, closeTab } = useWorkspace()
-  const scrollRef = useRef<HTMLDivElement>(null)
-
-  const scroll = (direction: "left" | "right") => {
-    if (scrollRef.current) {
-      const amount = 150
-      scrollRef.current.scrollBy({
-        left: direction === "left" ? -amount : amount,
-        behavior: "smooth",
-      })
-    }
-  }
 
   if (state.tabs.length === 0) {
-    return null
+    return <></>
   }
 
+  return <TabBarContent state={state} switchTab={switchTab} closeTab={closeTab} />
+}
+
+export function TabBarContent({ 
+  state, switchTab, closeTab }: 
+  { state: WorkspaceState, switchTab: (tabId: TabId) => void, closeTab: (tabId: TabId) => void }
+) {
+  const scrollRef = useHorizontalScroll<HTMLDivElement>()
+
   return (
-    <div className="flex items-center border-b bg-muted/20 shrink-0">
-      <Button
-        variant="ghost"
-        size="icon"
-        className="h-8 w-6 shrink-0"
-        onClick={() => scroll("left")}
+    <div className="border-b bg-muted/20 shrink-0">
+      <Tabs
+        value={state.activeTabId || undefined}
+        onValueChange={switchTab}
+        className="w-full"
       >
-        <ChevronLeft className="h-4 w-4" />
-      </Button>
-      <div
-        ref={scrollRef}
-        className="flex overflow-x-auto scrollbar-hide flex-1"
-        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-      >
-        {state.tabs.map((tab) => (
-          <Tab
-            key={tab.id}
-            id={tab.id}
-            title={tab.title}
-            type={tab.type}
-            isActive={tab.id === state.activeTabId}
-            onSwitch={switchTab}
-            onClose={closeTab}
-          />
-        ))}
-      </div>
-      <Button
-        variant="ghost"
-        size="icon"
-        className="h-8 w-6 shrink-0"
-        onClick={() => scroll("right")}
-      >
-        <ChevronRight className="h-4 w-4" />
-      </Button>
+        <ScrollArea ref={scrollRef} className="w-full">
+          <TabsList variant="line" className="h-9 w-max bg-transparent p-0">
+            {state.tabs.map((tab) => {
+              const Icon = typeIcons[tab.type]
+              return (
+                <TabsTrigger
+                  key={tab.id}
+                  value={tab.id}
+                  className="relative h-9 gap-1.5 rounded-none border-r border-r-border px-3 data-[state=active]:bg-background"
+                >
+                  <Icon className="h-3.5 w-3.5 text-muted-foreground" />
+                  <span className="truncate max-w-32">{tab.title}</span>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="ml-1 p-0.5 rounded hover:bg-muted"
+                    onClick={() => closeTab(tab.id)}
+                  >
+                    <X className="h-3 w-3 text-muted-foreground" />
+                  </Button>
+                </TabsTrigger>
+              )
+            })}
+          </TabsList>
+          <ScrollBar orientation="horizontal" />
+        </ScrollArea>
+      </Tabs>
     </div>
   )
 }

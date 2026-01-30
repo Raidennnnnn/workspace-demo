@@ -8,7 +8,7 @@ import { ActivityBar, type ActivityView } from "./ActivityBar"
 import { Sidebar } from "./Sidebar"
 import { MainArea } from "./MainArea"
 import { BottomPanel } from "./BottomPanel"
-import { WorkspaceProvider } from "@/contexts/WorkspaceContext"
+import { WorkspaceProvider } from "@/contexts/WorkspaceContextProvider"
 
 export function AppLayout() {
   const [activeView, setActiveView] = useState<ActivityView>("my")

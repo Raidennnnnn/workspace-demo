@@ -1,4 +1,4 @@
-export { Tab } from "./Tab"
+// export { Tab } from "./Tab"
 export { TabBar } from "./TabBar"
 export { CollapsedPanelIndicator } from "./CollapsedPanelIndicator"
 export { CollapsedPanelStrip } from "./CollapsedPanelStrip"

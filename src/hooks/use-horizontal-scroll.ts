@@ -5,6 +5,7 @@ export function useHorizontalScroll<T extends HTMLElement>() {
 
   React.useEffect(() => {
     const element = ref.current
+    console.log("element", element)
     if (!element) return
 
     const handleWheel = (event: WheelEvent) => {
