@@ -17,9 +17,11 @@ export function AppLayout() {
 
   useEffect(() => {
     const isStandalone = window.matchMedia("(display-mode: standalone)").matches
-    if (!isStandalone) {
-      toast.info("Install this app on your desktop for the best experience", {
-        duration: 5000,
+    if (!isStandalone) {      
+      setTimeout(() => {
+        toast.info("Install this app on your desktop for the best experience", {
+          duration: 10000,
+        })
       })
     }
   }, [])

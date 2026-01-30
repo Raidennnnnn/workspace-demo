@@ -48,10 +48,10 @@ export function PanelContent({ panel, index }: PanelContentProps) {
 
       {canCreateChild && (
         <>
-        <p className=" flex flex-col gap-2 text-sm mt-4 text-primary">
-          <span className="font-bold">Advantage:</span>
-          <span>1. all the detail or setting will render in the panel, not a dialog/drawer, this feels more stable and user friendly</span>
-          <span>2. this approach will mostly avoid dialog on top of dialog/ drawer on top of drawer, which is very annoying</span>
+        <p className=" flex flex-col gap-2 text-sm mt-4 text-foreground">
+          <span className="font-bold">优势：</span>
+          <span>1. 详情与设置均在面板内展示，而非弹窗/抽屉，更稳定、更友好</span>
+          <span>2. 基本避免层层弹窗、层层抽屉，减少干扰</span>
         </p>
         <Button onClick={handleCreateChild} className="mt-4" disabled={hasChild}>
           <Settings className="h-4 w-4 mr-2" />

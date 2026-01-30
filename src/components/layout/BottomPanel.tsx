@@ -27,12 +27,12 @@ export function BottomPanel({ isCollapsed, onToggle }: BottomPanelProps) {
       {!isCollapsed && (
         <>
           <Separator />
-          <div className="flex-1 p-3 font-mono text-sm">
-            <div className="flex flex-col items-center gap-2 text-primary">
-              <span className="font-bold">Advantage:</span>
-              <span>1. AI chat area, this is command mode</span>
-              <span>2. can be switch to chat mode (not implement in this demo)</span>
-              <span>3. maximum viewport by clicking the arrow on the top-right in the bottom panel</span>
+          <div className="flex-1 p-3 text-sm">
+            <div className="flex flex-col items-center gap-2 text-foreground">
+              <span className="font-bold">优势：</span>
+              <span>1. AI 对话区，此为命令模式</span>
+              <span>2. 可切换为聊天模式（本演示未实现）</span>
+              <span>3. 点击底部面板右上角箭头可最大化视口</span>
             </div>
           </div>
         </>

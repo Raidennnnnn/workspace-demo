@@ -14,11 +14,11 @@ export function WorkspacePanel() {
     return (
       <div className="h-full flex flex-col items-center justify-center text-muted-foreground">
         Select an item from the sidebar to get started
-        <p className="flex flex-col gap-2 mt-4 text-primary">
-          <span className="font-bold">Advantage:</span>
-          <span>1. this layout is mostly copying VS Code, solid and stable</span>
-          <span>2. vscode is a most popular code editor, this layout is a good reference</span>
-          <span>3. user will feel like in a real workspace, not like a web app</span>
+        <p className="flex flex-col gap-2 mt-4 text-foreground">
+          <span className="font-bold">优势：</span>
+          <span>1. 布局参考 VS Code，扎实稳定</span>
+          <span>2. VS Code 是最流行的代码编辑器，此布局是很好的参考</span>
+          <span>3. 用户会感觉像在真实工作区，而非普通网页应用</span>
         </p>
       </div>
     )
