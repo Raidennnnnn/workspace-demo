@@ -7,7 +7,7 @@ import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/workspace-demo/',
+  base: '/',
   plugins: [react(), tailwindcss(), VitePWA({
     manifest:  {
       theme_color: '#000000',
