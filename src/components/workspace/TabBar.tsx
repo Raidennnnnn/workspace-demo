@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react"
 import { X, Database, Box, Cog } from "lucide-react"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
@@ -22,11 +23,23 @@ export function TabBar() {
   return <TabBarContent state={state} switchTab={switchTab} closeTab={closeTab} />
 }
 
-export function TabBarContent({ 
-  state, switchTab, closeTab }: 
+export function TabBarContent({
+  state, switchTab, closeTab }:
   { state: WorkspaceState, switchTab: (tabId: TabId) => void, closeTab: (tabId: TabId) => void }
 ) {
   const scrollRef = useHorizontalScroll<HTMLDivElement>()
+  const tabRefs = useRef<Map<TabId, HTMLButtonElement>>(new Map())
+  const prevActiveTabIdRef = useRef(state.activeTabId)
+
+  useEffect(() => {
+    if (state.activeTabId && state.activeTabId !== prevActiveTabIdRef.current) {
+      const tabElement = tabRefs.current.get(state.activeTabId)
+      if (tabElement) {
+        tabElement.scrollIntoView({ behavior: "smooth", inline: "nearest", block: "nearest" })
+      }
+    }
+    prevActiveTabIdRef.current = state.activeTabId
+  }, [state.activeTabId])
 
   return (
     <div className="border-b bg-muted/20 shrink-0">
@@ -43,6 +56,10 @@ export function TabBarContent({
                 <TabsTrigger
                   key={tab.id}
                   value={tab.id}
+                  ref={(el) => {
+                    if (el) tabRefs.current.set(tab.id, el)
+                    else tabRefs.current.delete(tab.id)
+                  }}
                   className="relative h-9 gap-1.5 rounded-none border-r border-r-border px-3 data-[state=active]:bg-background"
                 >
                   <Icon className="h-3.5 w-3.5 text-muted-foreground" />
