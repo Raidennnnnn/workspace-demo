@@ -5,8 +5,9 @@
 ## Documentation
 
 - [Architecture Overview](./docs/ARCHITECTURE.md) - Tech stack, directory structure, layout hierarchy
+- [UI Design Patterns](./docs/UI-DESIGN.md) - Page layout, navigation, panel system, themes
 - [State Management](./docs/STATE-MANAGEMENT.md) - Context API, hooks, state structure
-- [Design Patterns](./docs/PATTERNS.md) - Component patterns, styling, accessibility
+- [Code Patterns](./docs/PATTERNS.md) - Component patterns, styling, accessibility
 - [Component Reference](./docs/COMPONENTS.md) - All components with descriptions
 
 ## Commands
