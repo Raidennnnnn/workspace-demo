@@ -2,6 +2,13 @@
 
 > **Progress tracking:** See [PROGRESS.md](./PROGRESS.md) for implementation status
 
+## Documentation
+
+- [Architecture Overview](./docs/ARCHITECTURE.md) - Tech stack, directory structure, layout hierarchy
+- [State Management](./docs/STATE-MANAGEMENT.md) - Context API, hooks, state structure
+- [Design Patterns](./docs/PATTERNS.md) - Component patterns, styling, accessibility
+- [Component Reference](./docs/COMPONENTS.md) - All components with descriptions
+
 ## Commands
 - **Dev server:** `pnpm dev`
 - **Build:** `pnpm build` (runs tsc + vite build)
